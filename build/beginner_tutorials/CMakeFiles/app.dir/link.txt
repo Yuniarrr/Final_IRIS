@@ -1,0 +1,1 @@
+/usr/bin/c++    -rdynamic CMakeFiles/app.dir/src/kamera.cpp.o  -o /home/niar14/catkin_ws/devel/lib/beginner_tutorials/app 
