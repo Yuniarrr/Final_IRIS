@@ -1,8 +1,0 @@
-prefix=/home/niar14/catkin_ws/install
-
-Name: fol_baru
-Description: Description of fol_baru
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

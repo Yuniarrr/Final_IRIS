@@ -2,102 +2,66 @@ cmake_minimum_required(VERSION 3.0.2)
 project(beginner_tutorials)
 
 ## Find catkin and any catkin packages
-find_package(catkin REQUIRED COMPONENTS roscpp rospy std_msgs genmsg cv_bridge image_transport)
+find_package(catkin REQUIRED COMPONENTS 
+  roscpp 
+  rospy 
+  std_msgs 
+  genmsg 
+  cv_bridge 
+  image_transport
+  message_generation
+)
 
 ## Declare ROS messages and services
 ## add_message_files(FILES Num.msg)
-add_message_files(FILES my_msg.msg)
-## add_service_files(FILES AddTwoInts.srv)
+add_message_files(
+  DIRECTORY msg
+  FILES 
+  # my_msg.msg 
+  Num.msg
+)
+
+# add_service_files(
+#   FILES 
+#   AddTwoInts.srv
+# )
 
 ## Generate added messages and services
 generate_messages(DEPENDENCIES std_msgs)
 
 ## Declare a catkin package
-catkin_package()
+catkin_package(
+  INCLUDE_DIRS include
+  CATKIN_DEPENDS message_runtime
+)
+
+install(DIRECTORY include/std_msgs/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  PATTERN "*.h")
+
+# rosbuild_genmsg()
+
+# include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+# rospack(my_package)
+# genmsg()
 
 ## Build talker and listener
-include_directories(include ${catkin_INCLUDE_DIRS})
+# include_directories(include ${catkin_INCLUDE_DIRS})
 
-## talker
-add_executable(talker src/talker.cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
-add_dependencies(talker beginner_tutorials_generate_messages_cpp)
-target_link_libraries(talker ${catkin_LIBRARIES})
+# z_kamera
+add_executable(z_kamera src/z_kamera.cpp)
+target_link_libraries(z_kamera ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_dependencies(z_kamera beginner_tutorials_generate_messages_cpp)
 
-## listener
-add_executable(listener src/listener.cpp)
-target_link_libraries(listener ${catkin_LIBRARIES})
-add_dependencies(listener beginner_tutorials_generate_messages_cpp)
+# z_pc
+add_executable(z_pc src/z_pc.cpp)
+target_link_libraries(z_pc ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_dependencies(z_pc beginner_tutorials_generate_messages_cpp)
 
-## coba
-add_executable(coba src/coba.cpp)
-target_link_libraries(coba ${catkin_LIBRARIES})
-add_dependencies(coba beginner_tutorials_generate_messages_cpp)
-
-## kam
-add_executable(kam src/kam.cpp)
-target_link_libraries(kam ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(kam beginner_tutorials_generate_messages_cpp)
-
-## susahnya
-add_executable(susahnya src/susahnya.cpp)
-target_link_libraries(susahnya ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(susahnya beginner_tutorials_generate_messages_cpp)
-
-## bgst
-add_executable(bgst src/bgst.cpp)
-target_link_libraries(bgst ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(bgst beginner_tutorials_generate_messages_cpp)
-
-## bgst_2
-add_executable(bgst_2 src/bgst_2.cpp)
-target_link_libraries(bgst_2 ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(bgst_2 beginner_tutorials_generate_messages_cpp)
-
-## su
-# add_executable(su src/su.cpp)
-# target_link_libraries(su ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-# add_dependencies(su beginner_tutorials_generate_messages_cpp)
-
-## su_2
-add_executable(su_2 src/su_2.cpp)
-target_link_libraries(su_2 ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(su_2 beginner_tutorials_generate_messages_cpp)
-
-# pc
-add_executable(pc src/pc.cpp)
-target_link_libraries(pc ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(pc beginner_tutorials_generate_messages_cpp)
-
-## motor
-add_executable(motor src/motor.cpp)
-target_link_libraries(motor ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(motor beginner_tutorials_generate_messages_cpp)
-
-# kamera
-add_executable(kamera src/kamera.cpp)
-target_link_libraries(kamera ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
-add_dependencies(kamera beginner_tutorials_generate_messages_cpp)
-
-## panjang
-## add_executable(panjang src/panjang.cpp)
-## target_link_libraries(panjang ${catkin_LIBRARIES})
-## add_dependencies(panjang beginner_tutorials_generate_messages_cpp)
-
-## lebar
-## add_executable(lebar src/lebar.cpp)
-## target_link_libraries(lebar ${catkin_LIBRARIES})
-## add_dependencies(lebar beginner_tutorials_generate_messages_cpp)
-
-## tinggi
-## add_executable(tinggi src/tinggi.cpp)
-## target_link_libraries(tinggi ${catkin_LIBRARIES})
-## add_dependencies(tinggi beginner_tutorials_generate_messages_cpp)
-
-## volume
-## add_executable(volume src/volume.cpp)
-## target_link_libraries(volume ${catkin_LIBRARIES})
-## add_dependencies(volume beginner_tutorials_generate_messages_cpp)
+# z_motor
+add_executable(z_motor src/z_motor.cpp)
+target_link_libraries(z_motor ${catkin_LIBRARIES} ${OpenCV_LIBRARIES})
+add_dependencies(z_motor beginner_tutorials_generate_messages_cpp)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -105,15 +69,15 @@ add_dependencies(kamera beginner_tutorials_generate_messages_cpp)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(catkin REQUIRED COMPONENTS
-   roscpp
-   rospy
-   std_msgs
-   message_generation
-   cv_bridge
-   image_transport
-   sensor_msgs
-)
+# find_package(catkin REQUIRED COMPONENTS
+#    roscpp
+#    rospy
+#    std_msgs
+#    message_generation
+#    cv_bridge
+#    image_transport
+#    sensor_msgs
+# )
 
 find_package( OpenCV REQUIRED )
 
@@ -206,13 +170,13 @@ find_package( OpenCV REQUIRED )
 ## LIBRARIES: libraries you create in this project that dependent projects also need
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
-catkin_package(
- INCLUDE_DIRS include
-#  LIBRARIES beginner_tutorials
-#  CATKIN_DEPENDS roscpp rospy std_msgs
- CATKIN_DEPENDS roscpp std_msgs sensor_msgs
-#  DEPENDS system_lib
-)
+# catkin_package(
+#  INCLUDE_DIRS include
+# #  LIBRARIES beginner_tutorials
+# #  CATKIN_DEPENDS roscpp rospy std_msgs
+#  CATKIN_DEPENDS roscpp std_msgs sensor_msgs
+# #  DEPENDS system_lib
+# )
 
 ###########
 ## Build ##
@@ -310,4 +274,3 @@ include_directories(
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
-

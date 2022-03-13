@@ -1,1 +1,7 @@
 int64 num
+uint16 hasil_pc_sudut
+uint16 hasil_pc_kec_x
+uint16 hasil_pc_kec_y
+float32 hasil_kamera_x
+float32 hasil_kamera_y
+uint32 hasil_motor

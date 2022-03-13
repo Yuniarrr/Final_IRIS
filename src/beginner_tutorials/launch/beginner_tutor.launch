@@ -1,12 +1,12 @@
 <!-- <launch>
-    <node name = "panjang" pkg = "beginner_tutorials" type = "panjang" output = "screen" respawan = "true" />
-    <node name = "lebar" pkg = "beginner_tutorials" type = "lebar" output = "screen" respawan = "true" />
-    <node name = "tinggi" pkg = "beginner_tutorials" type = "tinggi" output = "screen" respawan = "true" />
-    <node name = "volume" pkg = "beginner_tutorials" type = "volume" output = "screen" respawan = "true" />
+    <node name = "panjang" pkg = "beginner_tutorials" type = "panjang" output = "screen" respawn = "true" />
+    <node name = "lebar" pkg = "beginner_tutorials" type = "lebar" output = "screen" respawn = "true" />
+    <node name = "tinggi" pkg = "beginner_tutorials" type = "tinggi" output = "screen" respawn = "true" />
+    <node name = "volume" pkg = "beginner_tutorials" type = "volume" output = "screen" respawn = "true" />
 </launch> -->
 
 <launch>
-    <node name = "kamera" pkg = "beginner_tutorials" type = "kamera" output = "screen" respawan = "true" />
-    <node name = "pc" pkg = "beginner_tutorials" type = "pc" output = "screen" respawan = "true" />
-    <node name = "motor" pkg = "beginner_tutorials" type = "motor" output = "screen" respawan = "true" />
+    <node name = "z_kamera" pkg = "beginner_tutorials" type = "z_kamera" output = "screen" respawn = "true" />
+    <node name = "z_pc" pkg = "beginner_tutorials" type = "z_pc" output = "screen" respawn = "true" />
+    <node name = "z_motor" pkg = "beginner_tutorials" type = "z_motor" output = "screen" respawn = "true" />
 </launch>
